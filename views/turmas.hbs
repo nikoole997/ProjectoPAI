@@ -4,10 +4,10 @@
         <div class="row" id="actionDiv">
             <div id="editValue">Adicionar turma</div>
             <div class="col">Nome turma:
-                <input type="text" class="form-control" placeholder="Nome turma" id="nomeTurma" name="nomeTurma">
+                <input type="text" class="form-control" placeholder="Nome turma" id="input1" name="input1">
             </div>
             <div class="col"> Curso:
-                <input type="text" class="form-control" placeholder="Curso" id="curso" name="curso">
+                <input type="text" class="form-control" placeholder="Curso" id="input2" name="input2">
             </div>
             <div class="col" id="actionButtons">
                 <div id="secaoAdicionar">
@@ -15,7 +15,7 @@
                 </div>
                 <div id="secaoEditar">
                     <button class="btn btn-info" type="submit" id="acao">Editar</button>
-                    <button class="btn btn-danger" type="button" onclick="cancelarEditar()">Cancelar</button>
+                    <button class="btn btn-danger" type="button" onclick="cancelarEditar('turmas')">Cancelar</button>
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
                     <a href="/turmas/{{id}}/alunos">Ver mais</a>
                 </button>
                 <button type="button" class="btn btn-warning"
-                    onclick="mostrarEditar({{id}},'{{nome}}', '{{curso}}')">Editar</button>
+                    onclick="mostrarEditarTurmas({{id}},'{{nome}}', '{{curso}}')">Editar</button>
                 <form action="/turmas/{{id}}?_method=DELETE" method="POST">
                     <button type="submit" class="btn btn-danger">Apagar</button> </form>
             </div>

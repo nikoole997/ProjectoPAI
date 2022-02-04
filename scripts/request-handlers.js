@@ -26,8 +26,8 @@ module.exports.getTurmas = getTurmas;
 
 function inserirTurma(req, res) {
   let connection = mysql.createConnection(options);
-  let nome = req.body.nomeTurma;
-  let curso = req.body.curso;
+  let nome = req.body.input1;
+  let curso = req.body.input2;
 
   let sql = "INSERT INTO turma(nome, curso) VALUES (?,?)";
   connection.connect(function (err) {
@@ -36,7 +36,7 @@ function inserirTurma(req, res) {
       if (err) {
         res.sendStatus(500);
       } else {
-        getTurmas(req, res);
+        res.redirect("/");
       }
     });
   });
@@ -45,8 +45,8 @@ module.exports.inserirTurma = inserirTurma;
 
 function editarTurma(req, res) {
   let connection = mysql.createConnection(options);
-  let nome = req.body.nomeTurma;
-  let curso = req.body.curso;
+  let nome = req.body.input1;
+  let curso = req.body.input2;
   let id = req.params.id;
 
   let sql = "Update turma set nome = ?, curso = ? where id = ?";
@@ -56,7 +56,7 @@ function editarTurma(req, res) {
       if (err) {
         res.sendStatus(500);
       } else {
-        getTurmas(req, res);
+        res.redirect("/");
       }
     });
   });
@@ -73,7 +73,7 @@ function deleteTurma(req, res) {
       if (err) {
         res.sendStatus(500);
       } else {
-        getTurmas(req, res);
+        res.redirect("/");
       }
     });
   });
@@ -102,11 +102,11 @@ function deleteAluno(req, res) {
   let sql = "DELETE FROM ALUNO WHERE id = ?";
   connection.connect(function (err) {
     if (err) throw err;
-    connection.query(sql, [req.params.id], function (err, rows) {
+    connection.query(sql, [req.params.idAluno], function (err, rows) {
       if (err) {
         res.sendStatus(500);
       } else {
-        getTurmaAlunos(req, res);
+        res.redirect("/turmas/" + req.params.id + "/alunos");
       }
     });
   });
@@ -115,8 +115,8 @@ module.exports.deleteAluno = deleteAluno;
 
 function inserirAluno(req, res) {
   let connection = mysql.createConnection(options);
-  let nome = req.body.nomeAluno;
-  let numero = req.body.numero;
+  let nome = req.body.input1;
+  let numero = req.body.input2;
 
   let sql = "INSERT INTO aluno(nome, numero, idTurma) VALUES (?,?,?)";
   connection.connect(function (err) {
@@ -125,9 +125,29 @@ function inserirAluno(req, res) {
       if (err) {
         res.sendStatus(500);
       } else {
-        getTurmaAlunos(req, res);
+        res.redirect("/turmas/" + req.params.id + "/alunos");
       }
     });
   });
 }
 module.exports.inserirAluno = inserirAluno;
+
+function editarAluno(req, res) {
+  let connection = mysql.createConnection(options);
+  let nome = req.body.input1;
+  let numero = req.body.input2;
+  let idAluno = req.params.idAluno;
+  let sql = "Update aluno set nome = ?, numero = ? where id = ?";
+  connection.connect(function (err) {
+    if (err) throw err;
+    connection.query(sql, [nome, numero, idAluno], function (err, rows) {
+      if (err) {
+        res.sendStatus(500);
+      } else {
+        res.redirect("/turmas/" + req.params.id + "/alunos");
+      }
+    });
+  });
+}
+
+module.exports.editarAluno = editarAluno;

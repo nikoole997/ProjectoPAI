@@ -7,10 +7,10 @@
         <div class="row" id="actionDiv">
             <div id="editValue">Adicionar aluno</div>
             <div class="col">Nome aluno:
-                <input type="text" class="form-control" placeholder="Nome aluno" id="nomeAluno" name="nomeAluno">
+                <input type="text" class="form-control" placeholder="Nome aluno" id="input1" name="input1">
             </div>
             <div class="col"> Número:
-                <input type="text" class="form-control" placeholder="Número" id="numero" name="numero">
+                <input type="text" class="form-control" placeholder="Número" id="input2" name="input2">
             </div>
             <div class="col" id="actionButtons">
                 <div id="secaoAdicionar">
@@ -18,7 +18,7 @@
                 </div>
                 <div id="secaoEditar">
                     <button class="btn btn-info" type="submit" id="acao">Editar</button>
-                    <button class="btn btn-danger" type="button" onclick="cancelarEditar()">Cancelar</button>
+                    <button class="btn btn-danger" type="button" onclick="cancelarEditar('alunos')">Cancelar</button>
                 </div>
             </div>
         </div>
@@ -40,8 +40,8 @@
 
             <div class="d-flex justify-content-center mt-4 w-100">
                 <button type="button" class="btn btn-warning"
-                    onclick="mostrarEditar({{id}},'{{nome}}', '{{curso}}')">Editar</button>
-                <form action="/alunos/{{id}}?_method=DELETE" method="POST">
+                    onclick="mostrarEditarAlunos({{id}}, {{idTurma}}, '{{nome}}', '{{numero}}')">Editar</button>
+                <form action="/turmas/{{idTurma}}/alunos/{{id}}?_method=DELETE" method="POST">
                     <button type="submit" class="btn btn-danger">Apagar</button> </form>
             </div>
         </div>

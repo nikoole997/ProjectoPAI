@@ -15,23 +15,32 @@
 </body>
 
 <script>
-    function mostrarEditar(id, nome, curso) {
-        document.getElementById("editValue").innerHTML = "Editar " + nome;
-        document.getElementById("nomeTurma").value = nome;
-        document.getElementById("curso").value = curso;
+    function mostrarEditarAlunos(id, idTurma, nome, numero) {
+        document.getElementById("formEdit").action = "/turmas/" + idTurma + "/alunos/" + id + "?_method=PUT";
+        mostrarConteudo(nome, numero);
+    }
+
+    function mostrarEditarTurmas(id, nome, curso) {
         document.getElementById("formEdit").action = "/turmas/" + id + "?_method=PUT";
+        mostrarConteudo(nome, curso);
+    }
+
+    function mostrarConteudo(input1, input2) {
+        document.getElementById("editValue").innerHTML = "Editar " + input1;
+        document.getElementById("input1").value = input1;
+        document.getElementById("input2").value = input2;
         document.getElementById("actionDiv").style.backgroundColor = '#f6f6f6';
         document.getElementById("secaoEditar").style.display = 'block';
         document.getElementById("secaoAdicionar").style.display = 'none';
     }
 
-    function cancelarEditar(id, nome, curso) {
+    function cancelarEditar(tipo) {
         document.getElementById("secaoEditar").style.display = 'none';
         document.getElementById("secaoAdicionar").style.display = 'block';
         document.getElementById("editValue").innerHTML = "";
-        document.getElementById("nomeTurma").value = "";
-        document.getElementById("curso").value = "";
-        document.getElementById("formEdit").action = "/turmas";
+        document.getElementById("input1").value = "";
+        document.getElementById("input2").value = "";
+        document.getElementById("formEdit").action = "/" + tipo;
         document.getElementById("actionDiv").removeAttribute('style');
     }
 </script>

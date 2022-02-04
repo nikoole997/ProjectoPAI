@@ -36,9 +36,11 @@ app.delete("/turmas/:id", requestHandlers.deleteTurma);
 
 app.get("/turmas/:id/alunos", requestHandlers.getTurmaAlunos);
 
-app.delete("/alunos/:id", requestHandlers.deleteAluno);
+app.delete("/turmas/:id/alunos/:idAluno", requestHandlers.deleteAluno);
 
 app.post("/turmas/:id/alunos", requestHandlers.inserirAluno);
+
+app.put("/turmas/:id/alunos/:idAluno", requestHandlers.editarAluno);
 
 app.listen(3000, () => {
   console.log(`App listening on port 3000`);
