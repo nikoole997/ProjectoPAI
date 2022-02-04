@@ -1,0 +1,49 @@
+<button class="btn btn-info" type="button"><a href="/">Voltar atrás</a> </button>
+<h1 id='title' class='d-flex justify-content-center mt-4 mb-4'>
+    Alunos da turma {{alunosTurma.0.nomeTurma}}
+</h1>
+<div class="d-flex justify-content-center mt-2 mb-2">
+    <form action="/turmas/{{alunosTurma.0.idTurma}}/alunos" method='POST' id="formEdit">
+        <div class="row" id="actionDiv">
+            <div id="editValue">Adicionar aluno</div>
+            <div class="col">Nome aluno:
+                <input type="text" class="form-control" placeholder="Nome aluno" id="nomeAluno" name="nomeAluno">
+            </div>
+            <div class="col"> Número:
+                <input type="text" class="form-control" placeholder="Número" id="numero" name="numero">
+            </div>
+            <div class="col" id="actionButtons">
+                <div id="secaoAdicionar">
+                    <button class="btn btn-info" type="submit" id="acao">Adicionar</button>
+                </div>
+                <div id="secaoEditar">
+                    <button class="btn btn-info" type="submit" id="acao">Editar</button>
+                    <button class="btn btn-danger" type="button" onclick="cancelarEditar()">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<div class="container">{{#each alunosTurma}}
+    <div class="card">
+        <div class="card-header d-flex justify-content-center mt-4">
+        </div>
+        <div class="card-body">
+            <h4>
+                Nome: {{nome}}
+            </h4>
+            <h4>
+                Número: {{numero}}
+            </h4>
+
+            <div class="d-flex justify-content-center mt-4 w-100">
+                <button type="button" class="btn btn-warning"
+                    onclick="mostrarEditar({{id}},'{{nome}}', '{{curso}}')">Editar</button>
+                <form action="/alunos/{{id}}?_method=DELETE" method="POST">
+                    <button type="submit" class="btn btn-danger">Apagar</button> </form>
+            </div>
+        </div>
+    </div>{{/each}}
+</div>

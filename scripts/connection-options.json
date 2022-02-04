@@ -1,0 +1,6 @@
+{
+    "host": "localhost",
+    "user": "root",
+    "database": "turmasdb",
+    "password": "12345"
+}

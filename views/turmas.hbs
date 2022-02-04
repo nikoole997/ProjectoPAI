@@ -1,0 +1,50 @@
+<h1 id='title' class='d-flex justify-content-center mt-4 mb-4'>Turmas</h1>
+<div class="d-flex justify-content-center mt-2 mb-2">
+    <form action="/turmas" method='POST' id="formEdit">
+        <div class="row" id="actionDiv">
+            <div id="editValue">Adicionar turma</div>
+            <div class="col">Nome turma:
+                <input type="text" class="form-control" placeholder="Nome turma" id="nomeTurma" name="nomeTurma">
+            </div>
+            <div class="col"> Curso:
+                <input type="text" class="form-control" placeholder="Curso" id="curso" name="curso">
+            </div>
+            <div class="col" id="actionButtons">
+                <div id="secaoAdicionar">
+                    <button class="btn btn-info" type="submit" id="acao">Adicionar</button>
+                </div>
+                <div id="secaoEditar">
+                    <button class="btn btn-info" type="submit" id="acao">Editar</button>
+                    <button class="btn btn-danger" type="button" onclick="cancelarEditar()">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<div class="container">{{#each turmas}}
+    <div class="card">
+        <div class="card-header d-flex justify-content-center mt-4">
+            {{nome}}
+        </div>
+        <div class="card-body">
+            <h4>
+                Número de alunos: {{contagemAlunos}}
+            </h4>
+            <h4>
+                Curso: <span class="tag tag-teal">{{curso}}</span>
+            </h4>
+
+            <div class="d-flex justify-content-center mt-4 w-100">
+                <button type="button" class="btn btn-info ">
+                    <a href="/turmas/{{id}}/alunos">Ver mais</a>
+                </button>
+                <button type="button" class="btn btn-warning"
+                    onclick="mostrarEditar({{id}},'{{nome}}', '{{curso}}')">Editar</button>
+                <form action="/turmas/{{id}}?_method=DELETE" method="POST">
+                    <button type="submit" class="btn btn-danger">Apagar</button> </form>
+            </div>
+        </div>
+    </div>{{/each}}
+</div>
