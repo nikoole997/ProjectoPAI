@@ -83,7 +83,7 @@ module.exports.deleteTurma = deleteTurma;
 function getTurmaAlunos(req, res) {
   let connection = mysql.createConnection(options);
   let sql =
-    "SELECT a.*, t.nome as nomeTurma, t.curso, t.id as idTurma FROM TURMA as t LEFT JOIN ALUNO as a ON a.idTurma = t.id WHERE t.id = ?";
+    "SELECT a.*, t.nome as nomeTurma, t.curso, t.id as idTurma FROM TURMA as t INNER JOIN ALUNO as a ON a.idTurma = t.id WHERE t.id = ?";
   connection.connect(function (err) {
     if (err) throw err;
     connection.query(sql, [req.params.id], function (err, rows) {
