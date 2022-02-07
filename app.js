@@ -20,6 +20,14 @@ app.engine(
     extname: "hbs",
     defaultLayout: "index",
     partialsDir: `${__dirname}/views/partials`,
+    helpers: {
+      ifEquals: function (value1, value2) {
+        if (value1 == value2) {
+          return true;
+        }
+        return false;
+      },
+    },
   })
 );
 

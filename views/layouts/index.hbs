@@ -15,6 +15,7 @@
 </body>
 
 <script>
+
     function mostrarEditarAlunos(id, idTurma, nome, numero) {
         document.getElementById("formEdit").action = "/turmas/" + idTurma + "/alunos/" + id + "?_method=PUT";
         mostrarConteudo(nome, numero);
@@ -43,6 +44,8 @@
         document.getElementById("formEdit").action = "/" + tipo;
         document.getElementById("actionDiv").removeAttribute('style');
     }
+
+
 </script>
 
 </html>

@@ -25,7 +25,11 @@
     </form>
 </div>
 
-<div class="container">{{#each alunosTurma}}
+
+<div class="container">{{#if (ifEquals alunosTurma.0.id null)}}
+    <p id="semAlunos">Sem alunos</p>
+    {{else}}
+    {{#each alunosTurma}}
     <div class="card">
         <div class="card-header d-flex justify-content-center mt-4">
         </div>
@@ -44,5 +48,5 @@
                     <button type="submit" class="btn btn-danger">Apagar</button> </form>
             </div>
         </div>
-    </div>{{/each}}
+    </div>{{/each}}{{/if}}
 </div>
